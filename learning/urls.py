@@ -8,6 +8,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^markdown/', include('django_markdown.urls')),
-    url(r'^$', 'blog.views.post_list'),
-    url(r'^post/(?P<slug>\w+)\.html$', 'blog.views.post_detail'),
+    url(r'^$', 'blog.views.index'),
+    url(r'^post/(?P<slug>\w+)\.html$', 'blog.views.post'),
 )
