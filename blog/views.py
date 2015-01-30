@@ -7,6 +7,7 @@ from utils.markdown_util import MarkdownUtil
 
 def index(request):
     posts = Post.objects.all()
+    quote = Quote.random_get()
     return render_to_response('index.html', locals())
 
 
