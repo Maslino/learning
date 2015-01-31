@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'l+wd-ni8ofa7xz79_1-)^7!_e(p!@)nwlhu6nnkzc7^+%bzh%u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -78,7 +78,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'zh-CN'
 
-TIME_ZONE = 'UTC+8'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
