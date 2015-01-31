@@ -6,8 +6,8 @@ from django_markdown.models import MarkdownField
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=256, unique=True)
-    slug = models.CharField(max_length=256, unique=True, validators=[RegexValidator(r'\w+')])
+    title = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, validators=[RegexValidator(r'[a-zA-Z0-9_\-]+')])
     content = MarkdownField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -30,6 +30,8 @@ class Tag(models.Model):
 class Quote(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=64)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.content

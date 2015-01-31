@@ -12,9 +12,11 @@ def index(request):
 
 
 def post(request, slug):
+    print slug
     try:
         post = Post.objects.get(slug=slug)
         md_content = MarkdownUtil.convert(post.content)
-    except ObjectDoesNotExist:
+    except ObjectDoesNotExist as e:
+        print e
         raise Http404
     return render_to_response('post.html', locals())
