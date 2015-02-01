@@ -23,6 +23,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% load endless %}
+            {% paginate posts %}
             {% for post in posts %}
             <div class="post-preview">
                 <a href="post/{{post.slug}}.html">
@@ -34,10 +36,10 @@
 
             <hr>
             <!-- Pager -->
+            {% get_pages %}
             <ul class="pager">
-                <li class="next">
-                    <a href="#">Older Posts &rarr;</a>
-                </li>
+                <li class="previous">{{pages.previous}}</li>
+                <li class="next">{{pages.next}}</li>
             </ul>
         </div>
     </div>

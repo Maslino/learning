@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for blog project.
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_markdown',
+    'endless_pagination',
     'blog',
 )
 
@@ -103,3 +105,12 @@ TEMPLATE_DIRS = (
 # django-markdown settings
 MARKDOWN_EXTENSIONS = ['extra', 'codehilite', 'meta', 'toc']
 MARKDOWN_EXTENSION_CONFIGS = {}
+
+# django-endless-pagination settings
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.request',
+)
+ENDLESS_PAGINATION_PER_PAGE = 8
+ENDLESS_PAGINATION_PREVIOUS_LABEL = '&larr;上一页'
+ENDLESS_PAGINATION_NEXT_LABEL = '下一页 &rarr;'
