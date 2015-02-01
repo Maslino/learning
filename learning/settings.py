@@ -89,6 +89,10 @@ USE_L10N = True
 USE_TZ = False
 
 
+# media settings
+MEDIA_ROOT = '/data/www/learning/media'
+MEDIA_URL = "http://curvelearning.net/media/"
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 

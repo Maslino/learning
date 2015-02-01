@@ -48,3 +48,10 @@ class Quote(models.Model):
                 return cls.objects.all()[index]
             except IndexError:
                 times -= 1
+
+
+class File(models.Model):
+    upload_file = models.FileField(upload_to='%Y/%m/%d', max_length=255)
+
+    def __unicode__(self):
+        return self.upload_file.url

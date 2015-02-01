@@ -5,3 +5,4 @@ from blog.models import *
 admin.site.register(Post, MarkdownModelAdmin)
 admin.site.register(Tag)
 admin.site.register(Quote)
+admin.site.register(File)
