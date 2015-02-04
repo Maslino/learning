@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{post.title}} - CurveLearning{% endblock %}
+{% block title %}{{post.title}} - 学习小站{% endblock %}
 
 {% block content %}
     {% load static %}
@@ -51,10 +51,8 @@
     </div>
 
     <!-- social share -->
-    <!-- JiaThis Button BEGIN -->
-    <script type="text/javascript">
-    var jiathis_config = {data_track_clickback:'true'};
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"2","bdPos":"right","bdTop":"150"}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
     </script>
-    <script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;btn=r3.gif&amp;uid=2006786" charset="utf-8"></script>
-    <!-- JiaThis Button END -->
 {% endblock %}
