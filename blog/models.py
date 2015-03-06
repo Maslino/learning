@@ -17,6 +17,12 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
 
+    def prev_post(self):
+        return Post.objects.filter(id__lt=self.id).order_by('-id').first()
+
+    def next_post(self):
+        return Post.objects.filter(id__gt=self.id).order_by('id').first()
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)

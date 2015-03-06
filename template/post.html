@@ -13,8 +13,8 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>{{post.title}}</h1>
-                        <span class="meta">Posted on {{post.created|date:"Y-m-d H:i:s"}}</span>
+                        <h1>{{current_post.title}}</h1>
+                        <span class="meta">Posted on {{current_post.created|date:"Y-m-d H:i:s"}}</span>
                     </div>
                 </div>
             </div>
@@ -37,6 +37,21 @@
             </div>
         </div>
     </article>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="pager">
+                    {% if prev_post %}
+                    <li class="previous"><a href="{{prev_post.slug}}.html">&larr; {{prev_post.title}}</a></li>
+                    {% endif %}
+                    {% if next_post %}
+                    <li class="next"><a href="{{next_post.slug}}.html">{{next_post.title}} &rarr;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- social comment -->
     <div class="container">

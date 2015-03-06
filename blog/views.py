@@ -14,8 +14,10 @@ def index(request):
 def post(request, slug):
     print slug
     try:
-        post = Post.objects.get(slug=slug)
-        md_content = MarkdownUtil.convert(post.content)
+        current_post = Post.objects.get(slug=slug)
+        next_post = current_post.next_post()
+        prev_post = current_post.prev_post()
+        md_content = MarkdownUtil.convert(current_post.content)
     except ObjectDoesNotExist as e:
         print e
         raise Http404
