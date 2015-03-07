@@ -22,3 +22,13 @@ def post(request, slug):
         print e
         raise Http404
     return render_to_response('post.html', locals())
+
+
+def tag(request, slug):
+    try:
+        current_tag = Tag.objects.get(slug=slug)
+        posts = Post.objects.filter(tags__in=[current_tag])
+    except ObjectDoesNotExist as e:
+        print e
+        raise Http404
+    return render_to_response('tag.html', locals())

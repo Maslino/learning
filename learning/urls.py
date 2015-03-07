@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^markdown/', include('django_markdown.urls')),
     url(r'^$', 'blog.views.index'),
     url(r'^post/(?P<slug>[a-zA-Z0-9_\-]+)\.html$', 'blog.views.post'),
+    url(r'^tag/(?P<slug>[a-zA-Z0-9_\-]+)/$', 'blog.views.tag'),
 )

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}首页 - 学习小站{% endblock %}
+{% block title %}{{current_tag.name}} - 学习小站{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -11,8 +11,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>{{quote.content}}</h1>
-                    <span class="subheading">By {{quote.author}}</span>
+                    <h1>{{current_tag.name}}</h1>
                 </div>
             </div>
         </div>
@@ -23,8 +22,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            {% load endless %}
-            {% paginate posts %}
             {% for post in posts %}
             <div class="post-preview">
                 <a href="/post/{{post.slug}}.html">
@@ -39,14 +36,6 @@
                 </p>
             </div>
             {% endfor %}
-
-            <hr>
-            <!-- Pager -->
-            {% get_pages %}
-            <ul class="pager">
-                <li class="previous">{{pages.previous}}</li>
-                <li class="next">{{pages.next}}</li>
-            </ul>
         </div>
     </div>
 </div>
