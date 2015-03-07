@@ -26,7 +26,7 @@ class Post(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    slug = models.CharField(max_length=64, default='placeholder')
+    slug = models.CharField(max_length=64, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
