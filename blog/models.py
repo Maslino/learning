@@ -17,9 +17,11 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
 
+    @property
     def prev_post(self):
         return Post.objects.filter(id__lt=self.id).order_by('-id').first()
 
+    @property
     def next_post(self):
         return Post.objects.filter(id__gt=self.id).order_by('id').first()
 
@@ -32,6 +34,10 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def related_posts(self):
+        return Post.objects.filter(tags__in=[self])
 
 
 class Quote(models.Model):

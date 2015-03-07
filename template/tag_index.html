@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}标签 - 学习小站{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-color:#6f5499">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>标签</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% for tag in tags %}
+            <a href="/tag/{{tag.slug}}/" class="btn btn-default">
+                {{tag.name}} <span class="badge">{{tag.related_posts.count}}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

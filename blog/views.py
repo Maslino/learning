@@ -5,18 +5,18 @@ from blog.models import *
 from utils.markdown_util import MarkdownUtil
 
 
-def index(request):
+def post_index(request):
     posts = Post.objects.order_by('-created')
     quote = Quote.random_get()
-    return render_to_response('index.html', locals())
+    return render_to_response('post_index.html', locals())
 
 
 def post(request, slug):
     print slug
     try:
         current_post = Post.objects.get(slug=slug)
-        next_post = current_post.next_post()
-        prev_post = current_post.prev_post()
+        next_post = current_post.next_post
+        prev_post = current_post.prev_post
         md_content = MarkdownUtil.convert(current_post.content)
     except ObjectDoesNotExist as e:
         print e
@@ -27,8 +27,13 @@ def post(request, slug):
 def tag(request, slug):
     try:
         current_tag = Tag.objects.get(slug=slug)
-        posts = Post.objects.filter(tags__in=[current_tag])
+        posts = current_tag.related_posts
     except ObjectDoesNotExist as e:
         print e
         raise Http404
     return render_to_response('tag.html', locals())
+
+
+def tag_index(request):
+    tags = Tag.objects.order_by('-created')
+    return render_to_response('tag_index.html', locals())
