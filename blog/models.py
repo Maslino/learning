@@ -27,6 +27,9 @@ class Post(models.Model):
     def next_post(self):
         return Post.objects.filter(id__gt=self.id).order_by('id').first()
 
+    def get_absolute_url(self):
+        return '/post/' + self.slug + '.html'
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
@@ -40,6 +43,9 @@ class Tag(models.Model):
     @property
     def related_posts(self):
         return Post.objects.filter(tags__in=[self])
+
+    def get_absolute_url(self):
+        return '/tag/' + self.slug + '/'
 
 
 class Quote(models.Model):
