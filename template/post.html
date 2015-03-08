@@ -14,10 +14,11 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
                         <h1>{{current_post.title}}</h1>
-                        <span class="glyphicon glyphicon-calendar"></span>{{current_post.created|date:"Y-m-d H:i:s"}}
+                        <span class="glyphicon glyphicon-calendar"></span> {{current_post.created|date:"Y-m-d H:i:s"}}
+                        <span class="glyphicon glyphicon-user"></span> {{current_post.author}}
                         {% for tag in current_post.tags.all %}
                         <span class="glyphicon glyphicon-tag"></span>
-                        <a href="/tag/{{tag.slug}}/">{{tag.name}}</a>
+                        <a href="/tag/{{tag.slug}}/"> {{tag.name}}</a>
                         {% endfor %}
                     </div>
                 </div>
