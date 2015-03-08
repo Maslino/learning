@@ -4,6 +4,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from django_markdown.models import MarkdownField
+from utils.markdown_util import MarkdownUtil
 
 
 class Post(models.Model):
@@ -29,6 +30,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return '/post/' + self.slug + '.html'
+
+    def get_html(self):
+        return MarkdownUtil.convert(self.content)
 
 
 class Tag(models.Model):

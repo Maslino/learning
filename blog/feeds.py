@@ -1,7 +1,6 @@
 # coding=utf8
 from django.contrib.syndication.views import Feed
 from blog.models import Post
-from utils.markdown_util import MarkdownUtil
 
 
 class PostFeed(Feed):
@@ -16,7 +15,13 @@ class PostFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return MarkdownUtil.convert(item.content)
+        return item.get_html()
 
     def item_link(self, item):
         return item.get_absolute_url()
+
+    def item_pubdate(self, item):
+        return item.created
+
+    def item_author_name(self, item):
+        return item.author.username
