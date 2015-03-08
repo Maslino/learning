@@ -2,6 +2,7 @@
 import random
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 from django_markdown.models import MarkdownField
 
 
@@ -9,6 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     slug = models.CharField(max_length=255, unique=True, validators=[RegexValidator(r'[a-zA-Z0-9_\-]+')])
     content = MarkdownField()
+    author = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField('Tag', db_table='post_tag_rel')
