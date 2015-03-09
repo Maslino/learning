@@ -1,0 +1,3 @@
+# robots.txt file from curvelearning.net
+User-agent: *
+Disallow: /admin/
