@@ -118,3 +118,8 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 ENDLESS_PAGINATION_PER_PAGE = 8
 ENDLESS_PAGINATION_PREVIOUS_LABEL = '&larr;上一页'
 ENDLESS_PAGINATION_NEXT_LABEL = '下一页 &rarr;'
+
+# baidu ping
+BAIDU_PING_SERVICE = "http://ping.baidu.com/ping/RPC2"
+SITE_URL = "http://curvelearning.net"
+SITE_NAME = "学习小站 - 技术学习与思考"

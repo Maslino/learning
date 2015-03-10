@@ -1,10 +1,15 @@
 # coding=utf8
 import random
+import traceback
+import xmlrpclib
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from django_markdown.models import MarkdownField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from utils.markdown_util import MarkdownUtil
+from learning.settings import BAIDU_PING_SERVICE, SITE_URL, SITE_NAME
 
 
 class Post(models.Model):
@@ -80,3 +85,21 @@ class File(models.Model):
 
     def __unicode__(self):
         return self.upload_file.url
+
+
+@receiver(post_save, sender=Post)
+def ping_baidu(sender, **kwargs):
+    post = kwargs.get('instance')
+    if not post:
+        return
+    try:
+        proxy = xmlrpclib.ServerProxy(BAIDU_PING_SERVICE)
+        response = proxy.weblogUpdates.extendedPing(
+            SITE_NAME,
+            SITE_URL,
+            SITE_URL + post.get_absolute_url(),
+            SITE_URL + '/feeds/posts/'
+        )
+        print 'response from baidu ping:', response
+    except Exception:
+        traceback.print_exc()
