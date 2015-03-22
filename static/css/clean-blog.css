@@ -13,9 +13,6 @@ p {
   line-height: 1.5;
   margin: 10px 0;
 }
-p a {
-  text-decoration: underline;
-}
 h1,
 h2,
 h3,
@@ -35,6 +32,15 @@ a:focus {
 a img:hover,
 a img:focus {
   cursor: zoom-in;
+}
+article a {
+  text-decoration: none;
+  border-bottom: 1px dashed #999;
+}
+article a:hover,
+article a:focus {
+  text-decoration: none;
+  border-bottom: 1px solid #0085a1;
 }
 blockquote {
   color: #808080;
@@ -270,7 +276,7 @@ hr.small {
   border-bottom-left-radius: 5px;
 }
 footer {
-  padding: 50px 0 65px;
+  padding: 20px 0 20px;
 }
 footer .list-inline {
   margin: 0;
