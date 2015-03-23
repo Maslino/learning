@@ -17,6 +17,7 @@ def post(request, slug):
         current_post = Post.objects.get(slug=slug)
         next_post = current_post.next_post
         prev_post = current_post.prev_post
+        md = MarkdownUtil(current_post.content)
     except ObjectDoesNotExist as e:
         print e
         raise Http404

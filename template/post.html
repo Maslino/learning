@@ -38,7 +38,10 @@
                     <!--</a>-->
                     <!--<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>-->
                     <!-- todo: display md.toc on page's left side -->
-                    {{current_post.get_html|safe}}
+                    {% if md.get_toc %}
+                    {{md.get_toc|safe}}
+                    {% endif %}
+                    {{md.get_html|safe}}
                 </div>
             </div>
         </div>

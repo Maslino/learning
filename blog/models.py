@@ -37,7 +37,7 @@ class Post(models.Model):
         return '/post/' + self.slug + '.html'
 
     def get_html(self):
-        return MarkdownUtil.convert(self.content)
+        return MarkdownUtil(self.content).get_html()
 
 
 class Tag(models.Model):
