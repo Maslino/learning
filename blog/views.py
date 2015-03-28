@@ -37,3 +37,7 @@ def tag(request, slug):
 def tag_index(request):
     tags = Tag.objects.order_by('-created')
     return render_to_response('tag_index.html', locals())
+
+
+def leave_message(request):
+    return render_to_response('message.html')
