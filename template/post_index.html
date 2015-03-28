@@ -36,13 +36,16 @@
             </div>
             {% endfor %}
 
-            <hr>
             <!-- Pager -->
             {% get_pages %}
+            {% if pages.paginated %}
+            <hr>
             <ul class="pager">
                 <li class="previous">{{pages.previous}}</li>
+                <li><span style="border:none;">{{pages.current.number}}/{{pages|length}}</span></li>
                 <li class="next">{{pages.next}}</li>
             </ul>
+            {% endif %}
         </div>
     </div>
 </div>
