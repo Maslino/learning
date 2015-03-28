@@ -59,15 +59,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="/">首页</a>
-                </li>
-                <li>
-                    <a href="/tags/">标签</a>
-                </li>
-                <li>
-                    <a href="/message/">留言</a>
-                </li>
+                <li><a href="/">首页</a></li>
+                <li><a href="/tags/">标签</a></li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                      工具 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/tools/qrcode/">生成二维码</a></li>
+                    </ul>
+                  </li>
+                <li><a href="/message/">留言</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

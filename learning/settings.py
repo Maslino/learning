@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_markdown',
     'endless_pagination',
+    'bootstrap3',
     'blog',
 )
 
@@ -92,6 +93,8 @@ USE_TZ = False
 # media settings
 MEDIA_ROOT = '/data/www/learning/media'
 MEDIA_URL = "http://curvelearning.net/media/"
+QRCODE_ROOT = os.path.join(MEDIA_ROOT, 'qrcode')
+QRCODE_URL = MEDIA_URL + 'qrcode/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

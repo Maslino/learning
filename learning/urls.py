@@ -16,5 +16,7 @@ urlpatterns = patterns('',
     url(r'^tags/$', 'blog.views.tag_index'),
     url(r'^message/$', 'blog.views.leave_message'),
 
+    url(r'^tools/qrcode/$', 'blog.views.generate_qrcode'),
+
     url(r'^feeds/(?P<url>.*)/$', PostFeed()),
 )

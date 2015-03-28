@@ -72,6 +72,20 @@ hr.small {
   font-weight: 800;
   letter-spacing: 1px;
 }
+/*.navbar-custom .nav > li.dropdown.active.open > a,*/
+/*.navbar-custom .nav > li.dropdown.active.open > ul.dropdown-menu a:hover,*/
+.navbar-custom .nav > li.dropdown.open > ul.dropdown-menu a {
+  color: black;
+  background-color: white;
+}
+.navbar-custom .nav > li.dropdown.open > a {
+  color: white;
+  background-color: #6f5499;
+}
+.navbar-custom .nav > li.dropdown.open > ul.dropdown-menu a:hover {
+  color: white;
+  background-color: #0085a1;
+}
 @media only screen and (min-width: 768px) {
   .navbar-custom {
     background: transparent;

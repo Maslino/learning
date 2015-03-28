@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}二维码生成{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-color:#6f5499">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>二维码生成</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% load bootstrap3 %}
+            <form class="" action="" method="post">{% csrf_token %}
+            {% bootstrap_form form %}
+            <button class="btn btn-default" type="submit">生成</button>
+            </form>
+        </div>
+
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% if img_url %}
+            <img src="{{img_url}}" />
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
