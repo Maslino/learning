@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}视频网站真实地址解析{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-color:#6f5499">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>视频网站真实地址解析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p>目前仅支持爱奇艺，后续会添加更多支持</p>
+            {% load bootstrap3 %}
+            <form class="" action="" method="post">{% csrf_token %}
+            {% bootstrap_form form %}
+            {% if error %}
+            <p style="color:red;">{{error}}</p>
+            {% endif %}
+            <button class="btn btn-default" type="submit">解析</button>
+            </form>
+        </div>
+
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% if result %}
+            <article>
+                <a href="{{url}}" target="_blank">{{result.title}}</a>
+                {% for definition, real_urls in result.urls.items %}
+                <h4>清晰度：{{definition}}（总共{{real_urls|length}}段）</h4>
+                <ul>
+                {% for url in real_urls %}
+                <li>
+                    <a href="{{url}}" download target="_blank">
+                    点击下载第{{forloop.counter}}段
+                    </a>
+                </li>
+                {% endfor %}
+                </ul>
+                {% endfor %}
+            </article>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

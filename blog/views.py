@@ -1,16 +1,21 @@
+# coding=utf-8
 import StringIO
 from contextlib import closing
 import os
+import socket
 from django.shortcuts import render_to_response
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.template import RequestContext
 from django.conf import settings
 import qrcode
+import requests
 from blog.models import *
 from blog.form import *
 from utils.markdown_util import MarkdownUtil
 from utils.hash_util import *
+from video.iqiyi import get_real_addresses
+from video.exceptions import *
 
 
 def post_index(request):
@@ -71,3 +76,23 @@ def generate_qrcode(request):
     else:
         form = QRCodeForm()
     return render_to_response('tools/qrcode.html', locals(), context_instance=RequestContext(request))
+
+
+def video_resolve(request):
+    if request.method == "POST":
+        form = VideoResolveForm(request.POST)
+        if form.is_valid():
+            url = form.cleaned_data['url']
+            try:
+                result = get_real_addresses(url)
+            except VIPNotSupported as e:
+                error = unicode(e)
+            except requests.RequestException as e:
+                traceback.print_exc()
+                error = u'请求视频网站服务器出现异常'
+            except Exception as e:
+                traceback.print_exc()
+                error = u'解析视频地址失败'
+    else:
+        form = VideoResolveForm()
+    return render_to_response('tools/video_resolve.html', locals(), context_instance=RequestContext(request))
