@@ -19,5 +19,7 @@ urlpatterns = patterns('',
     url(r'^tools/qrcode/$', 'blog.views.generate_qrcode'),
     url(r'^tools/video-resolve/', 'blog.views.video_resolve'),
 
+    url(r'^links/$', 'blog.views.link_index'),
+
     url(r'^feeds/(?P<url>.*)/$', PostFeed()),
 )

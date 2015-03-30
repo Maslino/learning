@@ -96,3 +96,8 @@ def video_resolve(request):
     else:
         form = VideoResolveForm()
     return render_to_response('tools/video_resolve.html', locals(), context_instance=RequestContext(request))
+
+
+def link_index(request):
+    links = Link.objects.order_by('-created')
+    return render_to_response('links.html', locals())

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}友链{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-color:#6f5499">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>友链</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <article>
+                {% for link in links %}
+                <a href="{{link.url}}" target="_blank">{{link.name}}</a>
+                {% endfor %}
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}

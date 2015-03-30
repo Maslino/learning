@@ -87,6 +87,17 @@ class File(models.Model):
         return self.upload_file.url
 
 
+class Link(models.Model):
+    name = models.CharField(max_length=256)
+    url = models.URLField(max_length=512)
+    category = models.CharField(max_length=64)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return u'[' + unicode(self.category) + u']' + unicode(self.name)
+
+
 @receiver(post_save, sender=Post)
 def ping_baidu(sender, **kwargs):
     post = kwargs.get('instance')
