@@ -68,6 +68,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/tools/qrcode/">生成二维码</a></li>
                         <li><a href="/tools/video-resolve/">视频地址解析</a></li>
+                        <li><a href="/tools/webp-check/">WebP兼容性检测</a></li>
                     </ul>
                   </li>
                 <li><a href="/links/">友链</a></li>
@@ -126,5 +127,6 @@
 <script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{% static 'js/clean-blog.js' %}"></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

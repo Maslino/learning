@@ -98,6 +98,15 @@ def video_resolve(request):
     return render_to_response('tools/video_resolve.html', locals(), context_instance=RequestContext(request))
 
 
+def webp_check(request):
+    """
+    检测浏览器对WebP的支持
+    :param request:
+    :return:
+    """
+    return render_to_response('tools/webp_check.html', locals())
+
+
 def link_index(request):
     links = Link.objects.order_by('-created')
     return render_to_response('links.html', locals())

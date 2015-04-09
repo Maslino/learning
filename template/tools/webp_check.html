@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}WebP兼容性检测{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-color:#6f5499">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>WebP兼容性检测</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h2>您使用的浏览器的检测结果如下：</h2>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>WebP特性</th>
+                    <th>是否支持</th>
+                </tr>
+                <tr>
+                    <td>lossy</td>
+                    <td id="lossy"></td>
+                </tr>
+                <tr>
+                    <td>lossless</td>
+                    <td id="lossless"></td>
+                </tr>
+                <tr>
+                    <td>alpha</td>
+                    <td id="alpha"></td>
+                </tr>
+                <tr>
+                    <td>animation</td>
+                    <td id="animation"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    // check_webp_feature:
+    // 'feature' can be one of 'lossy', 'lossless', 'alpha' or 'animation'.
+    // 'callback(feature, result)' will be passed back the detection result (in an asynchronous way!)
+    function check_webp_feature(feature, callback) {
+        var kTestImages = {
+            lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+            lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+            alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
+            animation: "UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"
+        };
+        var img = new Image();
+        img.onload = function () {
+            var result = (img.width > 0) && (img.height > 0);
+            callback(feature, result);
+        };
+        img.onerror = function () {
+            callback(feature, false);
+        };
+        img.src = "data:image/webp;base64," + kTestImages[feature];
+    }
+
+    window.onload = function(){
+        var features = ["lossy", "lossless", "alpha", "animation"];
+        for (var i = 0; i < features.length; i++) {
+            var feature = features[i];
+            check_webp_feature(feature, function(f, r){
+                var element = document.getElementById(f);
+                if(r){
+                    element.innerHTML = "是";
+                }else{
+                    element.innerHTML = "否";
+                }
+            });
+        }
+    }
+</script>
+{% endblock %}

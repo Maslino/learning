@@ -18,6 +18,7 @@ urlpatterns = patterns('',
 
     url(r'^tools/qrcode/$', 'blog.views.generate_qrcode'),
     url(r'^tools/video-resolve/', 'blog.views.video_resolve'),
+    url(r'^tools/webp-check/$', 'blog.views.webp_check'),
 
     url(r'^links/$', 'blog.views.link_index'),
 
