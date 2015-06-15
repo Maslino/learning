@@ -92,7 +92,7 @@ USE_TZ = False
 
 # media settings
 MEDIA_ROOT = '/data/www/learning/media'
-MEDIA_URL = "http://curvelearning.net/media/"
+MEDIA_URL = "http://maslino.website/media/"
 QRCODE_ROOT = os.path.join(MEDIA_ROOT, 'qrcode')
 QRCODE_URL = MEDIA_URL + 'qrcode/'
 
@@ -124,5 +124,5 @@ ENDLESS_PAGINATION_NEXT_LABEL = '下一页 &rarr;'
 
 # baidu ping
 BAIDU_PING_SERVICE = "http://ping.baidu.com/ping/RPC2"
-SITE_URL = "http://curvelearning.net"
+SITE_URL = "http://maslino.website"
 SITE_NAME = "学习小站 - 技术学习与思考"
