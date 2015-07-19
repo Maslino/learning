@@ -28,15 +28,12 @@
 
     <div class="container-fluid">
         <div class="row">
-            <!-- table of contents -->
-            <div class="col-md-offset-1 col-md-2">
+            <div class="col-md-offset-3 col-md-6">
+                <!-- table of contents -->
                 {% if md.get_toc %}
                 <h3>目录</h3>
                 {{md.get_toc|safe}}
                 {% endif %}
-            </div>
-
-            <div class="col-md-6">
                 <!-- post content -->
                 {{md.get_html|safe}}
                 <hr>
