@@ -26,31 +26,21 @@
         </div>
     </header>
 
-    <!-- Post Content -->
-    <article>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <!--<h2 class="section-heading">The Final Frontier</h2>-->
-                    <!--<blockquote>The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>-->
-                    <!--<a href="#">-->
-                        <!--<img class="img-responsive" src="{% static 'img/post-sample-image.jpg' %}" alt="">-->
-                    <!--</a>-->
-                    <!--<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>-->
-                    <!-- todo: display md.toc on page's left side -->
-                    {% if md.get_toc %}
-                    {{md.get_toc|safe}}
-                    {% endif %}
-                    {{md.get_html|safe}}
-                </div>
-            </div>
-        </div>
-    </article>
-
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- table of contents -->
+            <div class="col-md-offset-1 col-md-2">
+                {% if md.get_toc %}
+                <h3>目录</h3>
+                {{md.get_toc|safe}}
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <!-- post content -->
+                {{md.get_html|safe}}
                 <hr>
+                <!-- pager -->
                 <ul class="pager">
                     {% if prev_post %}
                     <li class="previous"><a href="{{prev_post.get_absolute_url}}">&larr; {{prev_post.title}}</a></li>
@@ -59,15 +49,8 @@
                     <li class="next"><a href="{{next_post.get_absolute_url}}">{{next_post.title}} &rarr;</a></li>
                     {% endif %}
                 </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- social comment -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <hr>
+                <!-- social comment -->
                 <!-- 多说评论框 start -->
                 <div class="ds-thread" data-thread-key="{{current_post.id}}" data-title="{{current_post.title}}" data-url="maslino.website{{current_post.get_absolute_url}}"></div>
                 <!-- 多说评论框 end -->
@@ -85,12 +68,42 @@
                     </script>
                 <!-- 多说公共JS代码 end -->
             </div>
+            <div class="col-md-2">
+                <!-- social share -->
+                <h3>分享</h3>
+                <div class="bdsharebuttonbox">
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                </div>
+
+                <!-- tags -->
+                <h3>标签</h3>
+                {% for tag in tags %}
+                <ul>
+                    <li>
+                        <a href="{{tag.get_absolute_url}}" class="">{{tag.name}}</a> ({{tag.related_posts.count}})
+                    </li>
+                </ul>
+                {% endfor %}
+
+                <!-- links -->
+                <h3>友情链接</h3>
+                {% for link in links %}
+                <ul>
+                    <li>
+                        <a href="{{link.url}}" target="_blank">{{link.name}}</a>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
-    <!-- social share -->
     <script>
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"2","bdPos":"right","bdTop":"150"}};
-        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
     </script>
 {% endblock %}
