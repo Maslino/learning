@@ -29,13 +29,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
-                <!-- table of contents -->
-                {% if md.get_toc %}
-                <h3>目录</h3>
-                {{md.get_toc|safe}}
-                {% endif %}
-                <!-- post content -->
-                {{md.get_html|safe}}
+                <article>
+                    <!-- table of contents -->
+                    {% if md.get_toc %}
+                    <h3>目录</h3>
+                    {{md.get_toc|safe}}
+                    {% endif %}
+                    <!-- post content -->
+                    {{md.get_html|safe}}
+                </article>
+
                 <hr>
                 <!-- pager -->
                 <ul class="pager">
@@ -46,6 +49,7 @@
                     <li class="next"><a href="{{next_post.get_absolute_url}}">{{next_post.title}} &rarr;</a></li>
                     {% endif %}
                 </ul>
+
                 <hr>
                 <!-- social comment -->
                 <!-- 多说评论框 start -->
