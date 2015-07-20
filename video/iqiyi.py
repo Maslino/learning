@@ -56,6 +56,17 @@ definition_mapping = {
 }
 
 
+def mix(tvid):
+    enc = []
+    enc.append('8e29ab5666d041c3a1ea76e06dabdffb')
+    tm = str(randint(2000,4000))
+    src = 'hsalf'
+    enc.append(str(tm))
+    enc.append(tvid)
+    sc = md5_hex("".join(enc))
+    return tm, sc, src
+
+
 def getVRSXORCode(arg1, arg2):
     loc3 = arg2 % 3
     if loc3 == 1:
@@ -83,12 +94,12 @@ def getVMS(tvid, vid, uid):
     # authkey -> for password protected video ,replace '' with your password
     # puid user.passportid may empty?
     # TODO: support password protected video
-    tm = randint(100, 1000)
+    tm, sc, src = mix(tvid)
     vmsreq = 'http://cache.video.qiyi.com/vms?key=fvip&src=1702633101b340d8917a69cf8a4b8c7' + \
-             "&tvId=" + tvid + "&vid=" + vid + "&vinfo=1&tm=" + str(tm) + \
-             "&enc=" + md5_hex('ts56gh' + str(tm) + tvid) + \
-             "&qyid=" + uid + "&tn=" + str(random()) + "&um=0" + \
-             "&authkey=" + md5_hex('' + str(tm) + tvid)
+                "&tvId=" + tvid + "&vid=" + vid + "&vinfo=1&tm=" + tm + \
+                "&enc=" + sc + \
+                "&qyid="+uid+"&tn="+str(random()) +"&um=0" +\
+                "&authkey="+md5_hex(str(tm) + tvid)
     return json.loads(get_content(vmsreq))
 
 
@@ -157,7 +168,7 @@ def get_real_addresses(url):
 
 
 if __name__ == "__main__":
-    res = get_real_addresses('http://www.iqiyi.com/dianying/20130311/cca43ead1a2435ec.html#vfrm=3-2-bee-1')
+    res = get_real_addresses('http://www.iqiyi.com/v_19rrolrmks.html')
     print res['title']
     print res['urls']
     for d, urls in res['urls'].items():
