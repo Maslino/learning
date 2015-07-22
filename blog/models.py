@@ -17,6 +17,7 @@ class Post(models.Model):
     slug = models.CharField(max_length=255, unique=True, validators=[RegexValidator(r'[a-zA-Z0-9_\-]+')])
     content = MarkdownField()
     author = models.ForeignKey(User)
+    visited = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField('Tag', db_table='post_tag_rel')

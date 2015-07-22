@@ -28,7 +28,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-offset-3 col-md-6">
+            <div class="col-md-offset-2 col-md-6">
                 <article>
                     <!-- table of contents -->
                     {% if md.get_toc %}
@@ -69,7 +69,7 @@
                     </script>
                 <!-- 多说公共JS代码 end -->
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <!-- social share -->
                 <h3>分享</h3>
                 <div class="bdsharebuttonbox">
@@ -81,25 +81,45 @@
                     <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
                 </div>
 
+                <!-- recent posts -->
+                <h3>最近文章</h3>
+                <ul>
+                    {% for post in recent_posts %}
+                    <li>
+                        <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- hot posts -->
+                <h3>热门文章</h3>
+                <ul>
+                    {% for post in hot_posts %}
+                    <li>
+                        <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
                 <!-- tags -->
                 <h3>标签</h3>
-                {% for tag in tags %}
                 <ul>
+                    {% for tag in tags %}
                     <li>
                         <a href="{{tag.get_absolute_url}}" class="">{{tag.name}}</a> ({{tag.related_posts.count}})
                     </li>
+                    {% endfor %}
                 </ul>
-                {% endfor %}
 
                 <!-- links -->
                 <h3>友情链接</h3>
-                {% for link in links %}
                 <ul>
+                    {% for link in links %}
                     <li>
                         <a href="{{link.url}}" target="_blank">{{link.name}}</a>
                     </li>
+                    {% endfor %}
                 </ul>
-                {% endfor %}
             </div>
         </div>
     </div>

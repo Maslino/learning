@@ -34,9 +34,15 @@ def post(request, slug):
 
         links = Link.objects.all()
         tags = Tag.objects.all()
+
+        recent_posts = Post.objects.order_by('-created')[:5]
+        hot_posts = Post.objects.order_by('-visited')[:5]
     except ObjectDoesNotExist as e:
         print e
         raise Http404
+
+    current_post.visited += 1
+    current_post.save()
     return render_to_response('post.html', locals())
 
 
