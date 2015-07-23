@@ -14,6 +14,7 @@ class MarkdownUtil(object):
                 'markdown.extensions.fenced_code',
                 'markdown.extensions.codehilite',
                 'markdown.extensions.toc',
+                'markdown.extensions.tables',
             ],
         )
         self.html = self.md.convert(content)
