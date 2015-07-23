@@ -102,7 +102,7 @@ class Link(models.Model):
 @receiver(post_save, sender=Post)
 def ping_baidu(sender, **kwargs):
     post = kwargs.get('instance')
-    if not post:
+    if not post or post.visited > 0:
         return
     try:
         proxy = xmlrpclib.ServerProxy(BAIDU_PING_SERVICE)
