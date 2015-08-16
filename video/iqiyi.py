@@ -58,9 +58,9 @@ definition_mapping = {
 
 def mix(tvid):
     enc = []
-    enc.append('8e29ab5666d041c3a1ea76e06dabdffb')
+    enc.append('3601ba290e4f4662848c710e2122007e')
     tm = str(randint(2000,4000))
-    src = 'hsalf'
+    src = 'eknas'
     enc.append(str(tm))
     enc.append(tvid)
     sc = md5_hex("".join(enc))
