@@ -23,4 +23,6 @@ urlpatterns = patterns('',
     url(r'^links/$', 'blog.views.link_index'),
 
     url(r'^feeds/(?P<url>.*)/$', PostFeed()),
+
+    url(r'^monitor/', include('monitor.urls')),
 )

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'endless_pagination',
     'bootstrap3',
     'blog',
+    'monitor',
 )
 
 MIDDLEWARE_CLASSES = (
