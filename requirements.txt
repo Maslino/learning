@@ -14,3 +14,4 @@ wsgiref==0.1.2
 Pillow==2.7.0
 qrcode==5.1
 requests==2.6.0
+supervisor==3.1.3
