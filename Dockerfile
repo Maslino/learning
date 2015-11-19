@@ -22,17 +22,7 @@ COPY ./etc/supervisord.conf /etc/supervisord.conf
 # install dependencies
 RUN pip install -r requirements.txt
 
-# create tables
-RUN python manage.py syncdb --noinput
-
-# create admin account
-RUN python manage.py initadmin
-
-# collect static files
-RUN python manage.py collectstatic --noinput
-
 # nginx listen on 80 port
 EXPOSE 80
 
-# supervisor manages nginx and uwsgi
-CMD supervisord -c /etc/supervisord.conf
+CMD /bin/sh /src/learning/run.sh
