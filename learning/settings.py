@@ -61,16 +61,15 @@ WSGI_APPLICATION = 'learning.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-from local_settings import *
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': DATABASE_NAME,
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASSWORD,
-        'HOST': DATABASE_HOST,
-        'PORT': DATABASE_PORT,
+        'NAME': os.environ.get('MYSQL_INSTANCE_NAME'),
+        'USER': os.environ.get('MYSQL_USERNAME'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_PORT_3306_TCP_ADDR'),
+        'PORT': os.environ.get('MYSQL_PORT_3306_TCP_PORT'),
         'OPTIONS': {
             'init_command': 'SET storage_engine=INNODB,character_set_connection=utf8,collation_connection=utf8_unicode_ci'
         },
